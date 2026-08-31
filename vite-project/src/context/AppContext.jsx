@@ -3,10 +3,21 @@ import api from "../api/api";
 
 const AppContext = createContext(undefined);
 
+/**
+ * AppContextProvider component that provides global application state.
+ * Manages user authentication state and session checking.
+ * @param {Object} props - Component props
+ * @param {React.ReactNode} props.children - Child components to wrap with context
+ * @returns {JSX.Element} Context provider wrapping children
+ */
 export function AppContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
+/**
+ * Checks the current user session by calling the API.
+ * Sets user state if authenticated, otherwise sets to null.
+ */
 const checkSession = async () =>{
   try {
     const {data} = await api.get("/api/auth/me");
@@ -30,6 +41,12 @@ const checkSession = async () =>{
   );
 }
 
+/**
+ * Custom hook to access the application context.
+ * Must be used within an AppContextProvider.
+ * @returns {Object} The application context containing user and loading state
+ * @throws {Error} If used outside of AppContextProvider
+ */
 export function useAppContext() {
   const context = useContext(AppContext);
   if (context === undefined) {
