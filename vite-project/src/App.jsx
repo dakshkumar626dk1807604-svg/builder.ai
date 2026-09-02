@@ -6,11 +6,6 @@ import BuilderPage from "./pages/BuilderPage";
 import PreviewPage from "./pages/PreviewPage";
 import { AuthLayout, GuestLayout } from "./pages/Layout";
 
-/**
- * App component that defines the application routing structure.
- * Includes guest routes (login, register) and protected routes (home, builder, preview).
- * @returns {JSX.Element} The main application router configuration
- */
 const App = () => {
   return (
     <Routes>

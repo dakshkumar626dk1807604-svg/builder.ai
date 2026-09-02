@@ -1,13 +1,5 @@
 import { detectDependencies } from "./sandpackUtils";
 
-/**
- * Exports a project as a downloadable ZIP file containing all project files,
- * package.json, vite config, and HTML entry point.
- * @param {Object} project - The project object containing name, files, etc.
- * @param {string} project.name - The name of the project
- * @param {Object} project.files - Object mapping file paths to file content
- * @returns {Promise<void>} Promise that resolves when the ZIP is downloaded
- */
 export async function exportProjectZip(project) {
     if (!project) return;
     try {
