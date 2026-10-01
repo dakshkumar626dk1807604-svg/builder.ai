@@ -151,7 +151,7 @@ export default function Pricing() {
         <h2 className='text-3xl font-bold tracking-tight text-zinc-900 mb-3'>Simple, Transparent Pricing</h2>
         <p className='text-zinc-600 text-base'>No hidden fees. Scale up or down anytime.</p>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
+           <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto'>
         <div className='p-8 rounded-2xl border border-zinc-200 bg-white shadow-sm'>
           <h3 className='text-xl font-bold text-zinc-900 mb-2'>Starter</h3>
           <p className='text-zinc-500 text-sm mb-6'>Perfect for small projects and side hustles</p>
@@ -164,6 +164,12 @@ export default function Pricing() {
           <p className='text-zinc-500 text-sm mb-6'>For growing businesses demanding full power</p>
           <div className='text-4xl font-bold text-zinc-950 mb-6'>$79 <span className='text-base font-normal text-zinc-500'>/mo</span></div>
           <button className='w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-sm transition'>Choose Pro</button>
+        </div>
+        <div className='p-8 rounded-2xl border border-zinc-200 bg-white shadow-sm'>
+          <h3 className='text-xl font-bold text-zinc-900 mb-2'>Fun 😼</h3>
+          <p className='text-zinc-500 text-sm mb-6'>Agar mummy or papa or anime or movies or sports se pyar karta ho to 50 rupees ki help kara &#128513; </p>
+          <div className='text-4xl font-bold text-zinc-950 mb-6'>₹50 <span className='text-base font-normal text-zinc-500'>/Life Time</span></div>
+          <button className='w-full py-3 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold rounded-xl transition'>Choose Fun</button>
         </div>
       </div>
     </section>
@@ -304,16 +310,17 @@ api.defaults.adapter = async (config) => {
     } else if (url === "/api/auth/logout") {
         saveUser(null);
         responseData = { message: "Logged out" };
-    }
 
     // 2. Project routes
-    else if (url === "/api/projects" && method === "get") {
+    } else if (url === "/api/projects" && method === "get") {
         const projects = getProjects();
         responseData = projects.map((p) => ({
             _id: p._id,
             name: p.name,
             description: p.description,
             version: p.version,
+            status: p.status,
+            published: p.published,
             createdAt: p.createdAt,
             updatedAt: p.updatedAt,
         }));
@@ -417,7 +424,7 @@ api.defaults.adapter = async (config) => {
             status = 404;
             responseData = { error: "Project not found" };
         }
-    } else if (url.match(/\/api\/projects\/[^/]+$/) && method === "get") {
+    } else if (url.match(/^\/api\/projects\/[^/]+$/) && method === "get") {
         const id = url.split("/").pop();
         const projects = getProjects();
         const found = projects.find((p) => p._id === id);

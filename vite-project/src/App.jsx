@@ -5,9 +5,13 @@ import HomePage from "./pages/Homepage";
 import BuilderPage from "./pages/BuilderPage";
 import PreviewPage from "./pages/PreviewPage";
 import { AuthLayout, GuestLayout } from "./pages/Layout";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
+    <>
+    <Toaster />
+    
     <Routes>
       {/* login routes */}
       <Route element={<GuestLayout />}>
@@ -20,9 +24,14 @@ const App = () => {
         <Route path='/builder/:id' element={<BuilderPage />} />
         <Route path='/preview/:id' element={<PreviewPage />} />
       </Route>
+
+      {/* public routes */}
+      <Route path= '/publish/:id' element={<PreviewPage />} />
+
        {/* catch-all */}
         <Route path='*' element={<Navigate to="/" replace />}/>
     </Routes>
+    </>
    
 
   );
