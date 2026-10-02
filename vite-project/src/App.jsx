@@ -28,6 +28,8 @@ const App = () => {
       {/* public routes */}
       <Route path= '/publish/:id' element={<PreviewPage />} />
 
+      
+
        {/* catch-all */}
         <Route path='*' element={<Navigate to="/" replace />}/>
     </Routes>
