@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
@@ -40,6 +39,7 @@ const HomePage = () => {
     genratingProject,
     loadProjects,
     handleGenerate,
+    handleDelete,
     logout,
   } = useAppContext()
 
@@ -50,10 +50,6 @@ const HomePage = () => {
   // Use projects from context if available, otherwise use dummyProjects to preview
   const displayProjects = projects && projects.length > 0 ? projects : dummyProjects
 
-=======
-import react from 'react'
-const Homepage = () => {
->>>>>>> 83b20b8356b31cb84851603eec85ba2f5ff7ef7e
   return (
     <div className="h-screen overflow-y-scroll text-white font-sans bg-[url('/bg-img.png')] bg-cover bg-center bg-no-repeat">
       {/* Nav */}
